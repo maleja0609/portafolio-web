@@ -1,11 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>portafolio web</title>
+    <link rel="stylesheet" href="normalize.css"> 
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <!--  header y nav-->
+    <header>
+        <nav>
+            <a href="#hero" class="logo"> Maria Londoño y Daniel Ariza</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <!-- hero -->
+        <section id="hero">
+            <div class="contenedor hero-content">
+                <h1>Bienvenidos, somos <span> Maria Londoño</span> &amp; <span>Daniel Ariza</span></h1>
+                <p>Desarrollamos productos web: fronend y backend en un solo equipo</p>
+                <a href="#proyectos" class="btn">Ver proyectos</a>
+            </div>
+        </section>
+
+        <!-- SOBRE MI -->
+        <section id="sobre mi">
+            <div class="contenedor">
+                <h2>Sobre <span>Mí</span></h2>
+                <div class="perfiles"></div>
+
+                <!-- Perfil 1 (SOLO CLASS) -->
+                <div class="perfil">
+                    <!-- aqui debemos colocar una foto de nuestros rostros -->
+                    <img src="img/WhatsApp Image 2026-08-05 at 3.06.32 PM.jpeg" alt="Foto de TuNombre"
+                        class="foto-perfil">
+                    <h3>Maria Londoño</h3>
+                    <p class="rol">Frontend Developer</p>
+                    <p>Apasionada por el diseño y la experiencia de usuario.</p>
+                </div>
+
+                <!-- Perfil 2 (SOLO CLASS) -->
+                <div class="perfil">
+                    <!-- aqui debemos colocar una foto de nuestros rostros -->
+                    <img src="img/WhatsApp Image 2026-08-21 at 1.49.57 PM.jpeg" alt="Foto de SuNombre"
+                        class="foto-perfil">
+                    <h3>Daniel Ariza</h3>
+                    <p class="rol">Backend Developer</p>
+                    <p>Apasionado por la lógica y los sistemas robustos.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- proyectos -->
+        <section id="proyectos">
+            <div class="contenedor">
+                <h2>Nuestros <span>Proyectos</span></h2>
+
+                <div class="tarjetas">
+                    <!-- Tarjeta 1 (SOLO CLASS) -->
+                    <div class="tarjeta">
+                        <img src="img/proyecto1.jpg" alt="Proyecto 1">
+                        <div class="tarjeta-contenido">
+                            <h3>E-commerce App</h3>
+                            <p>Tienda online con carrito de compras y pasarela de pago.</p>
+                            <a href="#" class="btn btn-tarjeta">Ver más</a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 (SOLO CLASS) -->
+                    <div class="tarjeta">
+                        <img src="img/proyecto2.jpg" alt="Proyecto 2">
+                        <div class="tarjeta-contenido">
+                            <h3>Dashboard Analytics</h3>
+                            <p>Panel de control con gráficos y estadísticas en tiempo real.</p>
+                            <a href="#" class="btn btn-tarjeta">Ver más</a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 (SOLO CLASS) -->
+                    <div class="tarjeta">
+                        <img src="img/proyecto3.jpg" alt="Proyecto 3">
+                        <div class="tarjeta-contenido">
+                            <h3>App de Tareas</h3>
+                            <p>Gestión de tareas con drag & drop y sincronización en la nube.</p>
+                            <a href="#" class="btn btn-tarjeta">Ver más</a>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4 (SOLO CLASS) -->
+                    <div class="tarjeta">
+                        <img src="img/proyecto4.jpg" alt="Proyecto 4">
+                        <div class="tarjeta-contenido">
+                            <h3>Blog Personal</h3>
+                            <p>Plataforma de blogging con sistema de comentarios y panel admin.</p>
+                            <a href="#" class="btn btn-tarjeta">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- contacto -->
+        <section id="contacto">
+            <div class="contenedor">
+                <h2>Contacto</h2>
+
+                <div class="contacto-wrapper">
+                    <!-- Formulario -->
+                    <form class="formulario">
+                        <div class="campo">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" rows="4" placeholder="Tu mensaje" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-enviar">Enviar mensaje</button>
+                    </form>
+
+                    <!-- Enlaces -->
+                    <div class="enlaces-contacto">
+                        <h3>Conéctate con nosotros</h3>
+                        <a href="mailto:equipo@email.com">📧 equipo@email.com</a>
+                        <a href="#">📱 +57 324 546 78 81/a>
+                            <a href="#">🔗 LinkedIn</a>
+                            <a href="#">🐱 GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    <!-- footer -->
+    <footer>
+        <div class="contenedor">
+            <p>&copy; 2026 Maria Londoño &amp; Daniel Ariza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
 </body>
+
 </html>

@@ -11,14 +11,18 @@
    Paleta sobria: un solo acento, neutros para el resto.
    ============================================================ */
 :root {
-    --color-primario: #1e3a5f;      /* azul petróleo oscuro, acento serio */
-    --color-acento: #c9752f;        /* terracota cálido — solo para detalles puntuales */
-    --color-secundario: #2d2d2d;    /* texto */
+    --color-primario: #1e3a5f;
+    /* azul petróleo oscuro, acento serio */
+    --color-acento: #c9752f;
+    /* terracota cálido — solo para detalles puntuales */
+    --color-secundario: #2d2d2d;
+    /* texto */
     --color-fondo: #fafafa;
     --color-blanco: #ffffff;
     --color-borde: #e2e2e2;
     --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --fuente-titulos: 'Georgia', 'Segoe UI', serif; /* serif en títulos = más editorial/serio */
+    --fuente-titulos: 'Georgia', 'Segoe UI', serif;
+    /* serif en títulos = más editorial/serio */
     --espaciado-pequeño: 1rem;
     --espaciado-medio: 2rem;
     --espaciado-grande: 4rem;
@@ -111,10 +115,11 @@ header {
 
 #navegador {
     font-family: var(--fuente-titulos);
-    font-size: 1.35rem;
+    font-size: 1.40rem;
     color: var(--color-primario);
     font-weight: bold;
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 /* Mobile-first: por defecto en columna (celular) */

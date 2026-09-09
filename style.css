@@ -6,22 +6,28 @@
     box-sizing: border-box;
 }
 
-/* variables: root  */
+/* ============================================================ */
+/* VARIABLES: ROOT
+   Paleta sobria: un solo acento, neutros para el resto.
+   ============================================================ */
 :root {
-    --color-primario: #13aaf0;
-    --color-secundario: #2D2D2D;
-    --color-fondo: #F8F9FA;
-    --color-blanco: #FFFFFF;
+    --color-primario: #1e3a5f;      /* azul petróleo oscuro, acento serio */
+    --color-acento: #c9752f;        /* terracota cálido — solo para detalles puntuales */
+    --color-secundario: #2d2d2d;    /* texto */
+    --color-fondo: #fafafa;
+    --color-blanco: #ffffff;
+    --color-borde: #e2e2e2;
     --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --fuente-titulos: 'Arial Black', 'Segoe UI', sans-serif;
+    --fuente-titulos: 'Georgia', 'Segoe UI', serif; /* serif en títulos = más editorial/serio */
     --espaciado-pequeño: 1rem;
     --espaciado-medio: 2rem;
     --espaciado-grande: 4rem;
-    --sombra-normal: 0 4px 6px rgba(2, 2, 2, 0.1);
-    --sombra-hover: 0 8px 20px rgba(55, 142, 201, 0.3);
+    --sombra-sutil: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* lo que vera el usuario */
+/* ============================================================ */
+/* BASE
+   ============================================================ */
 body {
     font-family: var(--fuente-principal);
     background-color: var(--color-fondo);
@@ -30,7 +36,7 @@ body {
 }
 
 .contenedor {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 var(--espaciado-pequeño);
 }
@@ -48,40 +54,48 @@ img {
 h2 {
     text-align: center;
     font-family: var(--fuente-titulos);
-    font-size: 2.5rem;
+    font-weight: normal;
+    font-size: 2.25rem;
     margin-bottom: var(--espaciado-grande);
     color: var(--color-secundario);
+    position: relative;
+    padding-bottom: 1rem;
 }
 
-h2 span {
-    color: var(--color-primario);
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-acento);
 }
 
 .btn {
     display: inline-block;
     background-color: var(--color-primario);
     color: var(--color-blanco);
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: all 0.3s ease;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.25s ease;
 }
 
 .btn:hover {
-    background-color: var(--color-secundario);
-    transform: scale(1.05);
-    box-shadow: var(--sombra-hover);
-    transition: all 0.3s ease;
+    background-color: #14283f;
 }
 
 /* ============================================================ */
-/* ===== HEADER Y NAV ===== */
-/* ============================================================ */
+/* HEADER Y NAV
+   ============================================================ */
 header {
     background-color: var(--color-blanco);
-    box-shadow: var(--sombra-normal);
+    border-bottom: 1px solid var(--color-borde);
     position: fixed;
     width: 100%;
     top: 0;
@@ -91,69 +105,124 @@ header {
 
 .header-contenedor {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
 
-.logo {
+#navegador {
     font-family: var(--fuente-titulos);
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     color: var(--color-primario);
     font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
+/* Mobile-first: por defecto en columna (celular) */
 .nav-links {
     display: flex;
+    flex-direction: column;
     list-style: none;
-    gap: var(--espaciado-medio);
+    width: 100%;
+}
+
+/* A partir de tablet/escritorio, pasa a fila con el nav centrado */
+@media (min-width: 768px) {
+    .header-contenedor {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+
+    #navegador {
+        margin-bottom: 0;
+        justify-self: start;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        width: auto;
+        gap: var(--espaciado-medio);
+        justify-self: center;
+    }
 }
 
 .nav-links a {
+    display: block;
+    position: relative;
+    text-align: center;
+    padding: 0.6rem 0.2rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-acento);
+    transition: width 0.25s ease, left 0.25s ease;
 }
 
 .nav-links a:hover {
     color: var(--color-primario);
-    transition: color 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 /* ============================================================ */
-/* ===== HERO (USO SOLO ID PARA ENLACE, NO PARA ESTILOS) ===== */
-/* ============================================================ */
+/* HERO
+   El id #hero existe solo como ancla de navegación, no para estilos.
+   Sin gradiente: fondo sólido + tipografía como protagonista.
+   ============================================================ */
 #hero {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-primario), #8B83FF);
+    background-image: linear-gradient(rgba(30, 58, 95, 0.85), rgba(30, 58, 95, 0.85)), url(img/800w-ix3sXZSPVeg.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color-blanco);
     text-align: center;
     padding: var(--espaciado-grande) var(--espaciado-pequeño);
-    margin-top: 70px;
+    margin-top: 62px;
+}
+
+.hero-contenido .marca-codigo {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: var(--color-acento);
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
 }
 
 .hero-contenido h1 {
     font-family: var(--fuente-titulos);
-    font-size: 3.5rem;
+    font-weight: normal;
+    font-size: 3rem;
     margin-bottom: var(--espaciado-pequeño);
 }
 
-.hero-contenido h1 span {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0 15px;
-    border-radius: 10px;
-}
-
 .hero-contenido p {
-    font-size: 1.3rem;
-    opacity: 0.9;
+    font-size: 1.15rem;
+    opacity: 0.85;
     margin-bottom: var(--espaciado-medio);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ============================================================ */
-/* ===== SOBRE MÍ (USO SOLO ID PARA ENLACE) ===== */
-/* ============================================================ */
+/* SOBRE MÍ
+   ============================================================ */
 #sobre-mi {
     padding: var(--espaciado-grande) 0;
     background-color: var(--color-blanco);
@@ -169,44 +238,45 @@ header {
 .perfil {
     background-color: var(--color-fondo);
     padding: var(--espaciado-medio);
-    border-radius: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--color-borde);
     text-align: center;
     flex: 1 1 300px;
-    max-width: 400px;
-    box-shadow: var(--sombra-normal);
-    transition: all 0.3s ease;
+    max-width: 380px;
+    transition: box-shadow 0.25s ease;
 }
 
 .perfil:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--sombra-hover);
-    transition: all 0.3s ease;
+    box-shadow: var(--sombra-sutil);
 }
 
 .foto-perfil {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    border-radius: 4px;
     object-fit: cover;
     margin: 0 auto 15px;
-    border: 4px solid var(--color-primario);
 }
 
 .perfil h3 {
-    color: var(--color-primario);
-    font-size: 1.5rem;
     font-family: var(--fuente-titulos);
+    font-weight: normal;
+    color: var(--color-secundario);
+    font-size: 1.3rem;
 }
 
 .rol {
-    font-weight: bold;
-    color: var(--color-secundario);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primario);
     margin-bottom: 10px;
 }
 
 /* ============================================================ */
-/* ===== PROYECTOS (USO SOLO ID PARA ENLACE) ===== */
-/* ============================================================ */
+/* PROYECTOS
+   ============================================================ */
 #proyectos {
     padding: var(--espaciado-grande) 0;
     background-color: var(--color-fondo);
@@ -221,24 +291,29 @@ header {
 
 .tarjeta {
     background-color: var(--color-blanco);
-    border-radius: 15px;
+    border: 1px solid var(--color-borde);
+    border-top: 3px solid var(--color-primario);
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: var(--sombra-normal);
     flex: 1 1 250px;
-    max-width: 300px;
-    transition: all 0.3s ease;
+    max-width: 280px;
+    transition: box-shadow 0.25s ease, border-top-color 0.25s ease;
 }
 
 .tarjeta:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--sombra-hover);
-    transition: all 0.3s ease;
+    box-shadow: var(--sombra-sutil);
+    border-top-color: var(--color-acento);
 }
 
 .tarjeta img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.tarjeta:hover img {
+    transform: scale(1.06);
 }
 
 .tarjeta-contenido {
@@ -246,25 +321,26 @@ header {
 }
 
 .tarjeta-contenido h3 {
-    color: var(--color-primario);
     font-family: var(--fuente-titulos);
-    margin-bottom: 10px;
+    font-weight: normal;
+    color: var(--color-secundario);
+    margin-bottom: 8px;
 }
 
 .tarjeta-contenido p {
-    color: #666;
-    font-size: 0.95rem;
-    margin-bottom: 15px;
+    color: #5a5a5a;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
 }
 
 .btn-tarjeta {
-    padding: 8px 20px;
-    font-size: 0.9rem;
+    padding: 8px 18px;
+    font-size: 0.85rem;
 }
 
 /* ============================================================ */
-/* ===== CONTACTO (USO SOLO ID PARA ENLACE) ===== */
-/* ============================================================ */
+/* CONTACTO
+   ============================================================ */
 #contacto {
     padding: var(--espaciado-grande) 0;
     background-color: var(--color-blanco);
@@ -273,7 +349,7 @@ header {
 .contacto-wrapper {
     display: flex;
     gap: var(--espaciado-grande);
-    max-width: 1000px;
+    max-width: 950px;
     margin: 0 auto;
 }
 
@@ -288,30 +364,30 @@ header {
 .campo label {
     display: block;
     font-weight: 600;
+    font-size: 0.9rem;
     margin-bottom: 5px;
 }
 
 .campo input,
 .campo textarea {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    padding: 11px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
     font-family: var(--fuente-principal);
-    transition: border-color 0.3s ease;
+    transition: border-color 0.25s ease;
 }
 
 .campo input:focus,
 .campo textarea:focus {
     outline: none;
     border-color: var(--color-primario);
-    transition: border-color 0.3s ease;
 }
 
 .btn-enviar {
     width: 100%;
-    padding: 15px;
-    font-size: 1.1rem;
+    padding: 14px;
+    font-size: 1rem;
 }
 
 .enlaces-contacto {
@@ -323,37 +399,40 @@ header {
 }
 
 .enlaces-contacto h3 {
-    color: var(--color-primario);
     font-family: var(--fuente-titulos);
+    font-weight: normal;
+    color: var(--color-secundario);
     margin-bottom: 10px;
 }
 
 .enlaces-contacto a {
-    padding: 12px;
+    padding: 11px;
     background-color: var(--color-fondo);
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .enlaces-contacto a:hover {
     background-color: var(--color-primario);
     color: var(--color-blanco);
-    transition: all 0.3s ease;
+    border-color: var(--color-primario);
 }
 
 /* ============================================================ */
-/* ===== FOOTER ===== */
-/* ============================================================ */
+/* FOOTER
+   ============================================================ */
 footer {
     background-color: var(--color-secundario);
     color: var(--color-blanco);
     text-align: center;
     padding: var(--espaciado-medio) 0;
+    font-size: 0.9rem;
 }
 
 /* ============================================================ */
-/* ===== MEDIA QUERIES ===== */
-/* ============================================================ */
+/* MEDIA QUERIES
+   ============================================================ */
 
 @media (max-width: 992px) {
     .contacto-wrapper {
@@ -384,27 +463,20 @@ footer {
     }
 
     .hero-contenido h1 {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
     }
 
     .hero-contenido p {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
-    .perfiles {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .perfil {
-        max-width: 100%;
-    }
-
+    .perfiles,
     .tarjetas {
         flex-direction: column;
         align-items: center;
     }
 
+    .perfil,
     .tarjeta {
         max-width: 100%;
     }
@@ -412,23 +484,23 @@ footer {
 
 @media (max-width: 480px) {
     h2 {
-        font-size: 2rem;
+        font-size: 1.85rem;
     }
 
     .hero-contenido h1 {
-        font-size: 2rem;
+        font-size: 1.85rem;
     }
 
     .hero-contenido p {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .foto-perfil {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
 
     .btn-enviar {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 }
